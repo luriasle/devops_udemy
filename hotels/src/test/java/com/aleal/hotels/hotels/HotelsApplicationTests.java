@@ -35,6 +35,7 @@ class HotelsApplicationTests {
                 new Hotel(2L, "Hotel B", "City B")
                 // Add more hotels if needed for testing variations
         );
+        
         Mockito.when(hotelService.search()).thenReturn(expectedHotels);
 
         // Act
