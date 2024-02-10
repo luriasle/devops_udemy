@@ -35,12 +35,14 @@ public class HotelController {
     @GetMapping
     public List<Hotel> search() {
         logger.info("Init Method search()");
+        
         return this.service.search();
     }
 
     @GetMapping("/list-properties")
     public String getPropertiesHotels() throws JsonProcessingException {
         logger.info("Init Method getPropertiesHotels()");
+
         ObjectWriter ow = new ObjectMapper().writer().withDefaultPrettyPrinter();
 
         PropertiesHotels propertiesHotels = new PropertiesHotels(
@@ -57,11 +59,13 @@ public class HotelController {
     @Retry(name = "searchRoomByHotelIdRetry", fallbackMethod = "searchRoomByHotelIdAlternative")
     public HotelRoom searchRoomByHotelId(@PathVariable Long id) {
         logger.info("Init Method searchRoomByHotelId()");
+
         return this.service.searchRoomByHotelId(id);
     }
 
     public HotelRoom searchRoomByHotelIdAlternative(@PathVariable Long id, Throwable thr) {
         logger.info("Init Method searchRoomByHotelIdAlternative()");
+
         return this.service.searchRoomByHotelIdWithoutRooms(id);
     }
 }
