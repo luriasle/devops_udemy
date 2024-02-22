@@ -9,7 +9,7 @@
 
 FROM openjdk:21-jdk-slim
 
-RUN addgroup -S devopsc && adduser -S javams -G devopsc
+RUN addgroup -S devopsc || true && adduser -S javams -G devopsc || true
 
 USER javams:devopsc
 
